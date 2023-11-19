@@ -1,0 +1,16 @@
+---
+- name: Install Nginx
+  hosts: all
+  remote_user: ubuntu
+  become: yes
+
+  tasks:
+  - name: Install NGINX latest version
+    apt:
+      name: nginx
+      state: latest
+      update_cache: True
+  - name: Make sure NGINX is running
+    systemd:
+      state: started
+      name: nginx
